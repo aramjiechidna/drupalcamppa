@@ -8,6 +8,7 @@
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/style.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -24,8 +25,126 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<!-- Opening -->
+				<section>
+					<h1>I've got 99 problems and our old code is all of them</h1>
+					<h2>A Case Study by Asha Ramji</h2>
+				</section>
+
+				<!-- Intro -->
+				<section>
+					<h1>About me</h1>
+					<ul>
+						<li>Web Developer</li>
+						<li>1.5 years of Drupal experience</li>
+						<li>Studying computer science</li>
+						<li>World traveller</li>
+					</ul>
+				</section>
+
+				<!-- Background -->
+				<section>
+					<h1>A bit of backstory</h1>
+					<ul>
+						<li>Certification program comprised of entityforms</li>
+						<li>Questions change annually</li>
+						<li>Admin interface to view results</li>
+						<li>Additions added were never originally in scope, structure is now highly customied</li>
+					</ul>
+				</section>
+
+				<!-- Background -->
+				<section>
+					<h1>The requirements</h1>
+					<ul>
+						<li>Create an audit checklist</li>
+						<li>Compare questions to the answers</li>
+						<li>Only view certain questions</li>
+						<li>Form to track audit results</li>
+						<li>Display each user's results in the admin interface</li>
+					</ul>
+				</section>
+
+					<!-- Background -->
+				<section>
+					<h1>The problem</h1>
+					<ul>
+						<li>Questions change annually</li>
+						<li>Auditted questions change annually</li>
+						<li>Conditional fields &amp; field collections</li>
+						<li>Step numbers beside questions</li>
+					</ul>
+				</section>
+
+				<!-- Solution -->
+				<section>
+					<h1>Can we use a view?</h1>
+					<!-- Check with Luke why we couldnt do a view -->
+					<ul>
+						<li>Not dynamic enough</li>
+						<li>Would required rebuilding each year</li>
+						<li>Can't properly account for conditional fields &amp; collections</li>
+						<li>Needed responses grouped together</li>
+						<li>Some questions have letters associated with them</li>
+					</ul>
+				</section>
+
+				<!-- Build out using a view with dummy questions and answers and show problems with it -->
+
+				<!-- Solution -->
+				<section>
+					<h1>The solution</h1>
+					<ul>
+						<li>Broken up into multiple functions within a custom module</li>
+						<li>Include file with questions to be auditted</li>
+						<li>Include file containing associated letters</li>
+						<li>Strictly structured to account for different field types</li>
+					</ul>
+				</section>
+
+				<!-- Solution -->
+				<section>
+					<h1>How are they structured?</h1>
+					<ul>
+						<li>Fields with one response</li>
+						<li>Fields with multiple responses (conditional fields)</li>
+						<li>Field collections</li>
+					</ul>
+				</section>
+
+				<!-- Show example of file and structure -->
+				<!-- Explain functions taking those results and creating that row's information based on the field type -->
+
+				<!-- Show result -->
+
+				<!-- Solution -->
+				<section>
+					<h1>The result</h1>
+					<ul>
+						<li>Table view checklist containing required questions and answers</li>
+						<li>Logic is generally enough to allow it to be dynamic</li>
+						<li>Form embedded to track results</li>
+						<li>Replace field names and letters next year to reuse</li>
+					</ul>
+				</section>
+
+				<!-- Reflection -->
+				<section>
+					<h1>Final Thoughts</h1>
+					<ul>
+						<li>Met client's needs and requirements</li>
+						<li>Will take less time to change out questions next year</li>
+						<li>Put questions and letters into form for the client to fill</li>
+					</ul>
+				</section>
+
+				<!-- Closing -->
+				<section>
+					<h1>The end</h1>
+					<h2>Thanks for listening!</h2>
+					<h3>Asha Ramji - aramji@echidna.ca</h3>
+				</section>
+
 			</div>
 		</div>
 
