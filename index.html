@@ -145,6 +145,7 @@
 				<section class="slide">
 					<h1 class="title">How are they structured?</h1>
 					<ul>
+						<li>Field groups</li>
 						<li>Fields with one response</li>
 						<li>Fields with multiple responses (conditional fields)</li>
 						<li>Field collections</li>
@@ -207,6 +208,85 @@
 					    ),
 					  );
 					</code></pre>
+			</section>
+
+			<section class="slide">
+				<h1 class="title">So what?</h1>
+				<iframe src="https://giphy.com/embed/720g7C1jz13wI" width="480" height="333" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+			</section>
+
+			<section class="slide code-slide">
+				<h1 class="title">Fields groups</h1>
+				<pre><code class="hljs" data-trim contenteditable>
+          if (array_key_exists($group_field_name, $questions[$step][$group->group_name])
+          && !empty($entityform->{$group_field_name}[LANGUAGE_NONE][0]['value'])) {
+            _hp_audit_checklist_group_multiple_answers($entityform, $step, $group, $group_field_name, $questions, $answers);
+          }
+					</code></pre>
+					<ul>
+						<li>Checks if parent field contains multiple answers (ie. select list) or just one</li>
+						<li>Alters files to only show file name, if applicable</li>
+						<li>Combines above into one row per field group</li>
+					</ul>
+			</section>
+
+			<section class="slide code-slide">
+				<h1 class="title">Fields collections</h1>
+				<pre><code class="hljs" data-trim contenteditable>
+          if (isset($questions[$step][$field_name])
+            && is_array($questions[$step][$field_name])
+            && isset($field[LANGUAGE_NONE][0]['revision_id'])) {
+              _hp_audit_checklist_field_collection_answers($step, $field, $field_name, $num, $questions, $answers);
+          }
+					</code></pre>
+					<ul>
+						<li>Loads all field collection items</li>
+						<li>Each item rendered into its own row</li>
+						<li>Items with conditional fields are grouped together</li>
+					</ul>
+			</section>
+
+			<section class="slide code-slide">
+				<h1 class="title">Fields with multiple answers</h1>
+				<pre><code class="hljs" data-trim contenteditable>
+          if (isset($questions[$step][$field_name])
+            && is_array($questions[$step][$field_name])
+            && !empty($field[LANGUAGE_NONE][0]['value'])) {
+              _hp_audit_checklist_multiple_answers($entityform, $step, $field_name, $field, $questions, $answers);
+          }
+					</code></pre>
+					<ul>
+						<li>Load response to parent field's question</li>
+						<li>Checks if child field contains multiple answers (ie. select list) or just one</li>
+						<li>Combine answers together in one row</li>
+					</ul>
+			</section>
+
+			<section class="slide code-slide">
+				<h1 class="title">Fields with one answer</h1>
+				<pre><code class="hljs" data-trim contenteditable style="max-height: 300px;">
+         if (sizeof($field[LANGUAGE_NONE]) > 1) {
+					    foreach($field[LANGUAGE_NONE] as $key => $answer) {
+					      // Create array item
+					      $answers[$step][$field_name] = '';
+
+					      if ($key == (sizeof($field[LANGUAGE_NONE])-1)) {
+					        $answers[$step][$field_name] .= $answer['value'];
+					      } else {
+					        $answers[$step][$field_name] .= $answer['value'] . ', ';
+					      }
+					    }
+					  } else {
+
+					  // single answer
+					    $answers[$step][$field_name] = $field[LANGUAGE_NONE][0]['value'];
+					  }
+					</code></pre>
+					<ul>
+						<li>Check if response can be multiple values (ie. select list)</li>
+						<li>Concatenate with commas if applicable</li>
+						<li>Combine answers together in one row</li>
+					</ul>
 			</section>
 
 				<!-- Explain functions taking those results and creating that row's information based on the field type -->
