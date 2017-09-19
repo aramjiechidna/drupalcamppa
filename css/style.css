@@ -9,7 +9,7 @@
 }
 
 h1.title {
-  font-size: 2em;
+  font-size: 1.7em;
   text-transform: uppercase;
   /*text-align: left;*/
 }
@@ -44,6 +44,10 @@ h2.subtitle {
 }
 
 .code-slide pre code {
-  max-height: 600px;
+  max-height: 550px;
   padding: 10px;
+}
+
+.code-slide h1.title {
+  font-size: 1em;
 }
