@@ -1,0 +1,49 @@
+/*.slides {
+  top: 10px !important;
+  left: 10px !important;
+  transform: none !important;
+}*/
+
+.controls {
+  display: none !important;
+}
+
+h1.title {
+  font-size: 2em;
+  text-transform: uppercase;
+  /*text-align: left;*/
+}
+
+/*.main-title {
+  text-align: center !important;
+}*/
+
+h2.subtitle {
+  font-size: 1em;
+  font-weight: 100;
+  /*text-decoration: italic;*/
+}
+
+.slide {
+  top: 20px !important;
+}
+
+.slide h1.title {
+  width: 100%;
+  float: left;
+}
+
+.code-slide {
+  padding: 0px !important;
+}
+
+.code-slide pre {
+  width: 100%;
+  margin: 0;
+  /*overflow: scroll;*/
+}
+
+.code-slide pre code {
+  max-height: 600px;
+  padding: 10px;
+}
