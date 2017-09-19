@@ -7,7 +7,7 @@
 		<title>reveal.js</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/blood.css">
 		<link rel="stylesheet" href="css/style.css">
 
 		<!-- Theme used for syntax highlighting of code -->
@@ -25,37 +25,37 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
+
 				<!-- Opening -->
 				<section>
-					<h1>I've got 99 problems and our old code is all of them</h1>
-					<h2>A Case Study by Asha Ramji</h2>
+					<h1 class="title main-title">I've got 99 problems and our old code is all of them</h1>
+					<h2 class="subtitle">A Case Study by Asha Ramji</h2>
 				</section>
 
 				<!-- Intro -->
-				<section>
-					<h1>About me</h1>
+				<section class="slide">
+					<h1 class="title">About me</h1>
 					<ul>
-						<li>Web Developer</li>
+						<li>Web Developer at Digital Echidna</li>
 						<li>1.5 years of Drupal experience</li>
 						<li>Studying computer science</li>
-						<li>World traveller</li>
+						<li>Harry Potter enthusiast</li>
 					</ul>
 				</section>
 
 				<!-- Background -->
-				<section>
-					<h1>A bit of backstory</h1>
+				<section class="slide">
+					<h1 class="title">A bit of backstory</h1>
 					<ul>
-						<li>Certification program comprised of entityforms</li>
-						<li>Questions change annually</li>
+						<li>Why an audit checklist?</li>
 						<li>Admin interface to view results</li>
-						<li>Additions added were never originally in scope, structure is now highly customied</li>
+						<li>Additions added were never originally in scope, structure is now highly customized</li>
 					</ul>
 				</section>
 
 				<!-- Background -->
-				<section>
-					<h1>The requirements</h1>
+				<section class="slide" class="slide">
+					<h1 class="title">The requirements</h1>
 					<ul>
 						<li>Create an audit checklist</li>
 						<li>Compare questions to the answers</li>
@@ -66,36 +66,67 @@
 				</section>
 
 					<!-- Background -->
-				<section>
-					<h1>The problem</h1>
+				<section class="slide">
+					<h1 class="title">The problem</h1>
 					<ul>
-						<li>Questions change annually</li>
+						<li>Form questions change annually</li>
 						<li>Auditted questions change annually</li>
 						<li>Conditional fields &amp; field collections</li>
 						<li>Step numbers beside questions</li>
 					</ul>
 				</section>
 
+				<section class="slide">
+					<h1>Let me explain using with Harry Potter</h1>
+				</section>
+				<!-- Go to demo site and show forms -->
+
 				<!-- Solution -->
-				<section>
-					<h1>Can we use a view?</h1>
-					<!-- Check with Luke why we couldnt do a view -->
+				<section class="slide">
+					<h1 class="title">Can we use a view?</h1>
 					<ul>
 						<li>Not dynamic enough</li>
 						<li>Would required rebuilding each year</li>
-						<li>Can't properly account for conditional fields &amp; collections</li>
-						<li>Needed responses grouped together</li>
-						<li>Some questions have letters associated with them</li>
+						<li>Aggregation settings don't group together properly</li>
+						<li>Need multiple question responses grouped together</li>
+						<li>Questions have letters associated with them</li>
 					</ul>
 				</section>
 
 				<!-- Build out using a view with dummy questions and answers and show problems with it -->
+				<!-- need to use the views_flipped_table module to display properly -->
+				<!-- without aggregations, each form shows up as a new Submission column -->
+				<!-- with aggregation creates multiple columns -->
+
+				<section>
+					<h1 class="title">Using a view</h1>
+					<ul>
+						<li>Without aggregation</li>
+					</ul>
+					<img src="images/without_agg.png" alt="View without aggregation">
+				</section>
+
+				<section>
+					<h1 class="title">Using a view</h1>
+					<ul>
+						<li>With aggregation</li>
+					</ul>
+					<img src="images/with_agg.png" alt="View without aggregation">
+				</section>
+
+				<section class="slide">
+					<h1>Nope, can't use a view</h1>
+					<ul>
+						<li>Problems with aggregation</li>
+						<li>Still other problems of grouping responses and letters</li>
+					</ul>
+				</section>
 
 				<!-- Solution -->
-				<section>
-					<h1>The solution</h1>
+				<section class="slide">
+					<h1 class="title">The solution</h1>
 					<ul>
-						<li>Broken up into multiple functions within a custom module</li>
+						<li>Customize it the way we want and make it reusable</li>
 						<li>Include file with questions to be auditted</li>
 						<li>Include file containing associated letters</li>
 						<li>Strictly structured to account for different field types</li>
@@ -103,8 +134,8 @@
 				</section>
 
 				<!-- Solution -->
-				<section>
-					<h1>How are they structured?</h1>
+				<section class="slide">
+					<h1 class="title">How are they structured?</h1>
 					<ul>
 						<li>Fields with one response</li>
 						<li>Fields with multiple responses (conditional fields)</li>
@@ -113,13 +144,50 @@
 				</section>
 
 				<!-- Show example of file and structure -->
+				<section class="slide code-slide">
+					<pre><code class="hljs" data-trim contenteditable>
+						function linkify( selector ) {
+						  if( supports3DTransforms ) {
+
+						    var nodes = document.querySelectorAll( selector );
+
+						    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
+						      var node = nodes[i];
+
+						      if( !node.className ) {
+						        node.className += ' roll';
+						      }
+						    }
+						  }
+						}
+						function linkify( selector ) {
+						  if( supports3DTransforms ) {
+
+						    var nodes = document.querySelectorAll( selector );
+
+						    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
+						      var node = nodes[i];
+
+						      if( !node.className ) {
+						        node.className += ' roll';
+						      }
+						    }
+						  }
+						}
+					</code></pre>
+			</section>
+
 				<!-- Explain functions taking those results and creating that row's information based on the field type -->
 
 				<!-- Show result -->
+				<section class="slide">
+					<h1>Tada!</h1>
+					<img>
+				</section>
 
 				<!-- Solution -->
-				<section>
-					<h1>The result</h1>
+				<section class="slide">
+					<h1 class="title">The result</h1>
 					<ul>
 						<li>Table view checklist containing required questions and answers</li>
 						<li>Logic is generally enough to allow it to be dynamic</li>
@@ -129,8 +197,8 @@
 				</section>
 
 				<!-- Reflection -->
-				<section>
-					<h1>Final Thoughts</h1>
+				<section class="slide">
+					<h1 class="title">Final Thoughts</h1>
 					<ul>
 						<li>Met client's needs and requirements</li>
 						<li>Will take less time to change out questions next year</li>
@@ -140,9 +208,9 @@
 
 				<!-- Closing -->
 				<section>
-					<h1>The end</h1>
-					<h2>Thanks for listening!</h2>
-					<h3>Asha Ramji - aramji@echidna.ca</h3>
+					<h1 class="title main-title">The end</h1>
+					<h2 class="subtitle">Thanks for listening!</h2>
+					<h2 class="subtitle">Asha Ramji - aramji@echidna.ca</h2>
 				</section>
 
 			</div>
