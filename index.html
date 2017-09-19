@@ -65,6 +65,11 @@
 					</ul>
 				</section>
 
+				<section class="slide">
+				<h1 class="title">Oh Boy</h1>
+				<iframe src="https://giphy.com/embed/GdExeeataLC5G" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+				</section>
+
 					<!-- Background -->
 				<section class="slide">
 					<h1 class="title">The problem</h1>
@@ -76,8 +81,14 @@
 					</ul>
 				</section>
 
+				<section>
+					<h1 class="title">How do we do that?</h1>
+					<iframe src="https://giphy.com/embed/26gR0YFZxWbnUPtMA" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+				</section>
+
 				<section class="slide">
-					<h1>Let me explain using with Harry Potter</h1>
+					<h1 class="title">Let me explain using Harry Potter</h1>
+					<iframe src="https://giphy.com/embed/HFdZPf52z9x4s" width="480" height="215" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 				</section>
 				<!-- Go to demo site and show forms -->
 
@@ -100,22 +111,14 @@
 
 				<section>
 					<h1 class="title">Using a view</h1>
-					<ul>
-						<li>Without aggregation</li>
-					</ul>
-					<img src="images/without_agg.png" alt="View without aggregation">
+					<p>Without aggregation vs. with aggregation</p>
 				</section>
-
-				<section>
-					<h1 class="title">Using a view</h1>
-					<ul>
-						<li>With aggregation</li>
-					</ul>
-					<img src="images/with_agg.png" alt="View without aggregation">
-				</section>
+				<!-- go to demo site and show both -->
+				<!-- TODO: duplicate view and add aggregation -->
 
 				<section class="slide">
-					<h1>Nope, can't use a view</h1>
+					<h1 class="title">Nope, can't use a view</h1>
+					<iframe src="https://giphy.com/embed/wofftnAdDtx4s" width="480" height="318" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 					<ul>
 						<li>Problems with aggregation</li>
 						<li>Still other problems of grouping responses and letters</li>
@@ -133,6 +136,11 @@
 					</ul>
 				</section>
 
+				<section class="slide">
+					<h1 class="title">YESSSS</h1>
+					<iframe src="https://giphy.com/embed/t3Mzdx0SA3Eis" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+				</section>
+
 				<!-- Solution -->
 				<section class="slide">
 					<h1 class="title">How are they structured?</h1>
@@ -142,38 +150,62 @@
 						<li>Field collections</li>
 					</ul>
 				</section>
+				<!-- array inside code linking each step to its step number -->
+				<!-- function specifying all field collections -->
 
 				<!-- Show example of file and structure -->
 				<section class="slide code-slide">
+					<h1 class="title">checklist.questions.php</h1>
 					<pre><code class="hljs" data-trim contenteditable>
-						function linkify( selector ) {
-						  if( supports3DTransforms ) {
+						$questions = array(
+					    // Harry Potter Certification
+					    'harry_potter_certification' => array(
+					      'field_have_you_seen_all_8_harry_' => array(
+					        'field_select_the_movies_you_ve_s',
+					      ),
+					      'field_have_you_read_any_of_the_7' => array(
+					        'field_select_the_books_you_ve_re',
+					      ),
+					    ),
 
-						    var nodes = document.querySelectorAll( selector );
+					    // Harry Potter Certification Pt 2
+					    'harry_potter_certification_pt_2' => array(
+					      'field_who_is_your_favourite_char' => array(
+					        'field_include_an_image',
+					      ),
+					      'field_who_is_your_least_favourit' => array(
+					        'field_include_another_image',
+					      ),
+					      'field_name_as_many_characters_as' => array(
+					        'field_character_name',
+					      ),
+					      'field_do_you_love_harry_potter_',
+					    ),
+					  );
+					</code></pre>
+			</section>
 
-						    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-						      var node = nodes[i];
+			<!-- Show example of file and structure -->
+				<section class="slide code-slide">
+				<h1 class="title">letters.questions.php</h1>
+					<pre><code class="hljs" data-trim contenteditable>
+						$letters = array(
+					    // Harry Potter Certification
+					    'harry_potter_certification' => array(
+					      'field_have_you_seen_all_8_harry_' => 'a',
+					      'field_have_you_read_any_of_the_7' => 'b',
+					    ),
 
-						      if( !node.className ) {
-						        node.className += ' roll';
-						      }
-						    }
-						  }
-						}
-						function linkify( selector ) {
-						  if( supports3DTransforms ) {
-
-						    var nodes = document.querySelectorAll( selector );
-
-						    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-						      var node = nodes[i];
-
-						      if( !node.className ) {
-						        node.className += ' roll';
-						      }
-						    }
-						  }
-						}
+					    // Harry Potter Certification Pt 2
+					    'harry_potter_certification_pt_2' => array(
+					      'field_who_is_your_favourite_char' => 'a',
+					      'field_who_is_your_least_favourit' => 'b',
+					      'field_name_as_many_characters_as' => array(
+					        'field_character_name' => 'c',
+					      ),
+					      'field_do_you_love_harry_potter_' => 'd',
+					    ),
+					  );
 					</code></pre>
 			</section>
 
@@ -181,8 +213,14 @@
 
 				<!-- Show result -->
 				<section class="slide">
-					<h1>Tada!</h1>
-					<img>
+					<h1 class="title">Tada!</h1>
+					<img src="images/result.png" alt="Final Audit Checklist">
+				</section>
+
+				<!-- Show result -->
+				<section class="slide">
+				<h1 class="title">Aww yeah</h1>
+					<iframe src="https://giphy.com/embed/3oz8xRF0v9WMAUVLNK" width="480" height="320" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 				</section>
 
 				<!-- Solution -->
@@ -208,6 +246,7 @@
 
 				<!-- Closing -->
 				<section>
+					<iframe src="https://giphy.com/embed/IThjAlJnD9WNO" width="480" height="360" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 					<h1 class="title main-title">The end</h1>
 					<h2 class="subtitle">Thanks for listening!</h2>
 					<h2 class="subtitle">Asha Ramji - aramji@echidna.ca</h2>
