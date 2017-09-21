@@ -27,15 +27,16 @@
 			<div class="slides">
 
 				<!-- Opening -->
-				<section>
-					<h1 class="title main-title">I've got 99 problems and our old code is all of them</h1>
-					<h2 class="subtitle">A Case Study by Asha Ramji</h2>
+				<section data-background="images/coding.gif">
+					<h1 class="title main-title-front">I've got 99 problems and our old code is all of them</h1>
+					<!-- <p class="subtitle main-subtitle">A Case Study by Asha Ramji</p> -->
 				</section>
 
 				<!-- Intro -->
 				<section class="slide">
 					<h1 class="title">About me</h1>
 					<ul>
+						<li>Asha Ramji</li>
 						<li>Web Developer at Digital Echidna</li>
 						<li>1.5 years of Drupal experience</li>
 						<li>Studying computer science</li>
@@ -47,48 +48,77 @@
 				<section class="slide">
 					<h1 class="title">A bit of backstory</h1>
 					<ul>
-						<li>Why an audit checklist?</li>
-						<li>Admin interface to view results</li>
-						<li>Additions added were never originally in scope, structure is now highly customized</li>
+						<li class="fragment">Why an audit checklist?</li>
+						<li class="fragment">Certification made up of entityforms</li>
+						<li class="fragment">Admin interface to view results</li>
+						<li class="fragment current-visible">Additions added were never originally in scope, structure is now highly customized</li>
 					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li></li>
+						</ul>
+					</aside>
 				</section>
 
 				<!-- Background -->
 				<section class="slide" class="slide">
 					<h1 class="title">The requirements</h1>
 					<ul>
-						<li>Create an audit checklist</li>
-						<li>Compare questions to the answers</li>
-						<li>Only view certain questions</li>
-						<li>Form to track audit results</li>
-						<li>Display each user's results in the admin interface</li>
+						<li class="fragment">Compare questions to the answers</li>
+						<li class="fragment">Only audit certain questions</li>
+						<li class="fragment">Include step numbers beside questions</li>
+						<li class="fragment">Form to track audit results</li>
+						<li class="fragment current-visible">Display each user's results in the admin interface</li>
 					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>Needed to be in a table format</li>
+							<li>Reiterate how it was one audit checklist per user based on their forms</li>
+						</ul>
+					</aside>
 				</section>
 
-				<section class="slide">
-				<h1 class="title">Oh Boy</h1>
-				<iframe src="https://giphy.com/embed/GdExeeataLC5G" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+				<section data-background="images/alright.gif">
+				<h1 class="title">alright then</h1>
+				<!-- <iframe src="https://giphy.com/embed/GdExeeataLC5G" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> -->
 				</section>
 
 					<!-- Background -->
 				<section class="slide">
 					<h1 class="title">The problem</h1>
 					<ul>
-						<li>Form questions change annually</li>
-						<li>Auditted questions change annually</li>
-						<li>Conditional fields &amp; field collections</li>
-						<li>Step numbers beside questions</li>
+						<li class="fragment">Form questions change annually</li>
+						<li class="fragment">Auditted questions change annually</li>
+						<li class="fragment">Conditional fields &amp; field collections</li>
+						<li class="fragment current-visible">Step numbers beside questions</li>
 					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>Step number needed to be the number of the form, and the letter of the question order</li>
+							<li>Step numbers/letters need to be manually added in by a human</li>
+						</ul>
+					</aside>
 				</section>
 
-				<section>
+				<section data-background="images/math.gif">
 					<h1 class="title">How do we do that?</h1>
-					<iframe src="https://giphy.com/embed/26gR0YFZxWbnUPtMA" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+					<!--<iframe src="https://giphy.com/embed/26gR0YFZxWbnUPtMA" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> -->
 				</section>
 
-				<section class="slide">
+				<section class="slide" data-background="images/hp2.gif">
 					<h1 class="title">Let me explain using Harry Potter</h1>
-					<iframe src="https://giphy.com/embed/HFdZPf52z9x4s" width="480" height="215" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+					<!-- <iframe src="https://giphy.com/embed/HFdZPf52z9x4s" width="480" height="215" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> -->
+
+					<aside class="notes">
+						<ul>
+							<li>Overall goal is to create an audit checklist to compare the questions/answers of our Harry Potter Certification</li>
+							<li>Will go through both forms, explain how the code handles the responses from the forms and then outputs it into a table</li>
+							<li>Point out use of different types of fields - conditionals, field collections, single answer</li>
+						</ul>
+					</aside>
 				</section>
 				<!-- Go to demo site and show forms -->
 
@@ -96,12 +126,22 @@
 				<section class="slide">
 					<h1 class="title">Can we use a view?</h1>
 					<ul>
-						<li>Not dynamic enough</li>
-						<li>Would required rebuilding each year</li>
-						<li>Aggregation settings don't group together properly</li>
-						<li>Need multiple question responses grouped together</li>
-						<li>Questions have letters associated with them</li>
+						<li class="fragment">Is it dynamic enough?</li>
+						<li class="fragment">Don't want to rebuild each year</li>
+						<li class="fragment">Need multiple question responses grouped together</li>
+						<li class="fragment current-visible">Questions have letters associated with them</li>
 					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>Need it to be dynamic</li>
+							<li>Rebuilding each year doesn't make it reusable</li>
+							<li>Could bring fields into the view then rewrite results to group together</li>
+							<li>Need the third column for the step numbers</li>
+							<li>Sounds appealing - need a table that pulls answers, is what a view is</li>
+							<li>Grouping answers properly is the main concern because of how custom everything already was to begin with</li>
+						</ul>
+					</aside>
 				</section>
 
 				<!-- Build out using a view with dummy questions and answers and show problems with it -->
@@ -112,16 +152,33 @@
 				<section>
 					<h1 class="title">Using a view</h1>
 					<p>Without aggregation vs. with aggregation</p>
+
+					<aside class="notes">
+						<ul>
+							<li>Combined responses into one row using rewrite output</li>
+						</ul>
+						<p>WITHOUT AGGREGATION</p>
+						<ul>
+							<li>Results broken up into one column per form</li>
+							<li>Should use aggregation to fix it</li>
+						</ul>
+						<p>WITH AGGREGATION</p>
+						<ul>
+							<li>Breaks it out even furth</li>
+							<li>This example contains 10 question, real checklist had 50</li>
+							<li>Fixing agg settings for all fields would be very time consuming</li>
+							<li>Not practical if we want it to be reusable - will have to basically completely rebuild anually and fix agg settings</li>
+						</ul>
+					</aside>
 				</section>
 				<!-- go to demo site and show both -->
-				<!-- TODO: duplicate view and add aggregation -->
 
 				<section class="slide">
 					<h1 class="title">Nope, can't use a view</h1>
 					<iframe src="https://giphy.com/embed/wofftnAdDtx4s" width="480" height="318" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
 					<ul>
-						<li>Problems with aggregation</li>
-						<li>Still other problems of grouping responses and letters</li>
+						<li class="fragment">Aggregation settings don't group together properly</li>
+						<li class="fragment current-visible">Still need to customize to include step numbers</li>
 					</ul>
 				</section>
 
@@ -129,27 +186,44 @@
 				<section class="slide">
 					<h1 class="title">The solution</h1>
 					<ul>
-						<li>Customize it the way we want and make it reusable</li>
-						<li>Include file with questions to be auditted</li>
-						<li>Include file containing associated letters</li>
-						<li>Strictly structured to account for different field types</li>
+						<li class="fragment">Customize it the way we want and make it reusable</li>
+						<li class="fragment">Include file with questions to be auditted</li>
+						<li class="fragment">Include file containing associated letters</li>
+						<li class="fragment current-visible">Strictly structured to account for different field types</li>
 					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>Avoid having to rebuild view every year</li>
+							<li>Question and letters are what will change, so include helper files with those info, keep logic in the module</li>
+							<li>Have questions/letter files follow a certain format so that based on the structure, the code will know how type of field it is and how to handle it and render into the table</li>
+							<li>Will explain more later</li>
+						</ul>
+					</aside>
 				</section>
 
-				<section class="slide">
+				<section data-background="images/yes.gif">
 					<h1 class="title">YESSSS</h1>
-					<iframe src="https://giphy.com/embed/t3Mzdx0SA3Eis" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+					<!-- <iframe src="https://giphy.com/embed/t3Mzdx0SA3Eis" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> -->
 				</section>
 
 				<!-- Solution -->
 				<section class="slide">
 					<h1 class="title">How are they structured?</h1>
 					<ul>
-						<li>Field groups</li>
-						<li>Fields with one response</li>
-						<li>Fields with multiple responses (conditional fields)</li>
-						<li>Field collections</li>
+						<li class="fragment">Field groups</li>
+						<li class="fragment">Fields with one response</li>
+						<li class="fragment">Fields with multiple responses (conditional fields)</li>
+						<li class="fragment current-visible">Field collections</li>
 					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>These are the different types of fields needing to be handled</li>
+							<li>Matters because depending on the type of field, it had to be rendered differently</li>
+							<li>ie. fields with conditial fields needed their answer + their conditional field's answer in the same row</li>
+						</ul>
+					</aside>
 				</section>
 				<!-- array inside code linking each step to its step number -->
 				<!-- function specifying all field collections -->
@@ -160,8 +234,8 @@
 					<pre><code class="hljs" data-trim contenteditable>
 						$questions = array(
 					    // Harry Potter Certification
-					    'harry_potter_certification' => array(
-					      'field_have_you_seen_all_8_harry_' => array(
+					    'harry_potter_certification' => array( // Form
+					      'field_have_you_seen_all_8_harry_' => array( // Multiple Answers
 					        'field_select_the_movies_you_ve_s',
 					      ),
 					      'field_have_you_read_any_of_the_7' => array(
@@ -177,13 +251,25 @@
 					      'field_who_is_your_least_favourit' => array(
 					        'field_include_another_image',
 					      ),
-					      'field_name_as_many_characters_as' => array(
+					      'field_name_as_many_characters_as' => array( // Field Collection
 					        'field_character_name',
 					      ),
-					      'field_do_you_love_harry_potter_',
+					      'field_do_you_love_harry_potter_', // Single Answer
 					    ),
 					  );
 					</code></pre>
+
+					<aside class="notes">
+						<ul>
+							<li>Giant array, all based on field names</li>
+							<li>Pulls field labels for the questions column and values for the submission column</li>
+							<li>Start with the name of the form</li>
+							<li>if value is just a field name with no key - is a single answer</li>
+							<li>If field name is a key, value is array of all the fields that make up that response - field that is the key is the field who's lable gets used as the question</li>
+							<li>Above logic also applies to field groups</li>
+							<li>If the field name is a field collection, all the fields within its array get rendered out as their own row</li>
+						</ul>
+					</aside>
 			</section>
 
 			<!-- Show example of file and structure -->
@@ -208,11 +294,50 @@
 					    ),
 					  );
 					</code></pre>
+
+					<aside class="notes">
+						<ul>
+							<li>Structure almost exactly the same as previous file</li>
+							<li>Different in that you only need to include the first level of field names - children don't matter since everything will end up in one row</li>
+							<li>Ex - Have you seen all 8 movies also included which movies you had seen in the questions file - here it doesn't matter because that will get included in the answer of "which movies have you seen", so that entire row will be question A</li>
+						</ul>
+					</aside>
 			</section>
 
-			<section class="slide">
+			<section data-background="images/sowhat.gif">
 				<h1 class="title">So what?</h1>
-				<iframe src="https://giphy.com/embed/720g7C1jz13wI" width="480" height="333" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+				<!-- <iframe src="https://giphy.com/embed/720g7C1jz13wI" width="480" height="333" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> -->
+				<aside class="notes">
+						<ul>
+							<li>Got these files, what do I do with them?</li>
+							<li>Created custom module with different functions to handle each type of field</li>
+							<li>Checks entityform fields against ones that need to be audited before doing anything</li>
+							<li>Pulls the question (field label) and groups together responses according to the type of field it is</li>
+							<li>All functions convert any answers that are files into links instead</li>
+						</ul>
+					</aside>
+			</section>
+
+			<!-- Include slide showing function that determines the type of field based on the structure - below is breakdowns -->
+			<!-- explain storing values in the different arrays to pass off to the template file at the end -->
+
+			<section class="slide">
+				<h1 class="title">here's how this is gonna go</h1>
+				<ul>
+					<li>Create empty arrays to hold questions, answers and steps</li>
+					<li>Set step number associated with each form</li>
+					<li>Pull question label and answer from each field, store in arrays</li>
+					<li>Pass arrays to template to render table</li>
+				</ul>
+
+				<aside class="notes">
+					<ul>
+						<li>Logic is essentially a giant loop to pull the right information every time it process a form</li>
+						<li>Step number gets set at the very beginning of the loop based on the form id</li>
+						<li>Within each form, loops through all the fields, checks if they need to be auditted, then gathers their answers and adds them to the arrays (question label and answer)</li>
+						<li>After all the forms are processed, these arrays get passed to a template to render out the table</li>
+					</ul>
+				</aside>
 			</section>
 
 			<section class="slide code-slide">
@@ -224,10 +349,18 @@
           }
 					</code></pre>
 					<ul>
-						<li>Checks if parent field contains multiple answers (ie. select list) or just one</li>
-						<li>Alters files to only show file name, if applicable</li>
-						<li>Combines above into one row per field group</li>
+						<li class="fragment">Checks if parent field contains multiple answers (ie. select list) or just one</li>
+						<li class="fragment current-visible">Combines into one row per field group</li>
 					</ul>
+
+					<aside class="notes">
+						<p>Within group multiple answers function</p>
+						<ul>
+							<li>Adds parent field's value to answers array</li>
+							<li>Cycle through child fields to determine if they are single answers, multiple answers (ie. select list) or field collections</li>
+							<li>Get that answer and concatenate to parent's answer so they appear in the same row</li>
+						</ul>
+					</aside>
 			</section>
 
 			<section class="slide code-slide">
@@ -240,10 +373,19 @@
           }
 					</code></pre>
 					<ul>
-						<li>Loads all field collection items</li>
-						<li>Each item rendered into its own row</li>
-						<li>Items with conditional fields are grouped together</li>
+						<li class="fragment">Loads all field collection items</li>
+						<li class="fragment">Each item rendered into its own row</li>
+						<li class="fragment current-visible">Items with conditional fields are grouped together</li>
 					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>Have helper function with an array of field names of all field collections - </li>
+							<li></li>
+							<li>Handles each field within a collection based on if their single answer or multiple answer</li>
+							<li>Combines answers into one field then moves on to the next field collection - repeats for all collections</li>
+						</ul>
+					</aside>
 			</section>
 
 			<section class="slide code-slide">
@@ -256,10 +398,16 @@
           }
 					</code></pre>
 					<ul>
-						<li>Load response to parent field's question</li>
-						<li>Checks if child field contains multiple answers (ie. select list) or just one</li>
-						<li>Combine answers together in one row</li>
+						<li class="fragment">Load response to parent field's question</li>
+						<li class="fragment">Checks if child field contains multiple answers (ie. select list) or just one</li>
+						<li class="fragment current-visible">Combine answers together in one row</li>
 					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>Very similar to how field groups is handled but entityform structure is slightly different</li>
+						</ul>
+					</aside>
 			</section>
 
 			<section class="slide code-slide">
@@ -283,34 +431,65 @@
 					  }
 					</code></pre>
 					<ul>
-						<li>Check if response can be multiple values (ie. select list)</li>
-						<li>Concatenate with commas if applicable</li>
-						<li>Combine answers together in one row</li>
+						<li class="fragment">Check if response can be multiple values (ie. select list)</li>
+						<li class="fragment">Concatenate with commas if applicable</li>
 					</ul>
-			</section>
 
-				<!-- Explain functions taking those results and creating that row's information based on the field type -->
+					<aside class="notes">
+						<ul>
+							<li>Very simple compared to everything else</li>
+							<li>All of the more complicated types of fields (field collections, etc.) would eventually all break down to the point where they would use this function or the multiple responses function to get a value, then do their additional logic/concatenation they needed to do</li>
+							<li>Very modular, all of the functions get reused by other parts</li>
+						</ul>
+					</aside>
+				</section>
+
+				<!-- Explain questions and answers array getting passed to template -->
+
+				<section class="slide">
+					<h1 class="title">Making the table</h1>
+					<ul>
+						<li>Questions and answers array use field names as keys</li>
+						<li>Creates one row per key</li>
+						<li>Include extra row when a step number changes</li>
+						<li>Custom template embeds audit results form below table</li>
+					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>Keys are the parent field who's label gets used for the question - allows you to match up with question goes with which answers</li>
+							<li>Extra row is a visual cue so you know you've changed steps - makes it easier to read</li>
+					</ul>
+					</aside>
+				</section>
 
 				<!-- Show result -->
 				<section class="slide">
 					<h1 class="title">Tada!</h1>
 					<img src="images/result.png" alt="Final Audit Checklist">
+
+					<aside class="notes">
+						<ul>
+							<li>Included everything - steps, questions, answers</li>
+							<li>Form at the bottom for submitting audit results</li>
+						</ul>
+					</aside>
 				</section>
 
 				<!-- Show result -->
-				<section class="slide">
-				<h1 class="title">Aww yeah</h1>
-					<iframe src="https://giphy.com/embed/3oz8xRF0v9WMAUVLNK" width="480" height="320" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+				<section class="slide" data-background="images/yeah.gif">
+				<!-- <h1 class="title">Aww yeah</h1> -->
+					<!-- <iframe src="https://giphy.com/embed/3oz8xRF0v9WMAUVLNK" width="480" height="320" frameBorder="0" class="giphy-embed" allowFullScreen></iframe> -->
 				</section>
 
 				<!-- Solution -->
 				<section class="slide">
 					<h1 class="title">The result</h1>
 					<ul>
-						<li>Table view checklist containing required questions and answers</li>
-						<li>Logic is generally enough to allow it to be dynamic</li>
-						<li>Form embedded to track results</li>
-						<li>Replace field names and letters next year to reuse</li>
+						<li class="fragment">Table view checklist containing required questions and answers</li>
+						<li class="fragment">Logic is generally enough to allow it to be dynamic</li>
+						<li class="fragment">Form embedded to track results</li>
+						<li class="fragment current-visible">Replace field names and letters next year to reuse</li>
 					</ul>
 				</section>
 
@@ -318,10 +497,17 @@
 				<section class="slide">
 					<h1 class="title">Final Thoughts</h1>
 					<ul>
-						<li>Met client's needs and requirements</li>
-						<li>Will take less time to change out questions next year</li>
-						<li>Put questions and letters into form for the client to fill</li>
+						<li class="fragment">Met client's needs and requirements</li>
+						<li class="fragment">Will take less time to change out questions next year</li>
+						<li class="fragment current-visible">Put questions and letters into form for the client to fill</li>
 					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>This presentation proved how easy it will be next year - took less time to swap out the real questions for harry potter ones than it did to create the demo views</li>
+							<li>Putting everything into a form for the client could be a future improvement</li>
+						</ul>
+					</aside>
 				</section>
 
 				<!-- Closing -->
